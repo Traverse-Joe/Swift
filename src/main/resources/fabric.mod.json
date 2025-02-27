@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "swift",
+  "version": "${version}",
+  "name": "Swift",
+  "description": "Adds a SWIFT enchant (speed, step-assist and jump height)",
+  "authors": [
+    "Traverse_Joe",
+    "SilentSean"
+  ],
+  "icon": "assets/swift/icon.png",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.traverse.swift.Swift"
+    ],
+    "modmenu": [
+      "com.traverse.swift.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "swift.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.20.1"
+  }
+}

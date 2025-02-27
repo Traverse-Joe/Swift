@@ -1,0 +1,8 @@
+{
+  "text.autoconfig.swift.title": "Swift",
+  "text.autoconfig.swift.option.maxEnchantLevel": "Max Enchanment Level",
+  "text.autoconfig.swift.option.minEnchantLevelRequirement": "Min Enchantment Level Requirement",
+  "text.autoconfig.swift.option.damageChanceToEquipment": "Damage Chance to Equipment",
+  "text.autoconfig.swift.option.canBeAppliedFromEnchantTable": "Can Be Applied From Enchantment Table",
+  "enchantment.swift.swift": "Swift"
+}
