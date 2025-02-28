@@ -19,4 +19,7 @@ public class ConfigHandler implements ConfigData {
 
    @Comment("Can Be Applied From Enchantment Table")
     public boolean canBeAppliedFromEnchantTable = true;
+
+   @Comment("Has Villager Trade")
+    public boolean hasVillagerTrade = true;
 }

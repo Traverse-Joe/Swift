@@ -3,34 +3,27 @@ package com.traverse.swift.mixin;
 import com.traverse.swift.Swift;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-@Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
-
-    @Shadow public abstract boolean damage(DamageSource source, float amount);
+@Mixin(LivingEntity.class)
+public abstract class LivingEntityMixin {
 
     private static final UUID SPEED_BOOST_UUID = UUID.fromString("cd48113e-57d2-4f06-a31c-d155cbde157a");
 
     @Inject(method = "jump", at = @At("TAIL"))
     public void onJump(CallbackInfo ci){
-        PlayerEntity player = (PlayerEntity) (Object) this;
+        LivingEntity player = (LivingEntity) (Object) this;
         ItemStack stack = player.getEquippedStack(EquipmentSlot.FEET);
         int level = getSwiftLevel(player);
         if(level > 0) {
@@ -44,7 +37,7 @@ public abstract class PlayerEntityMixin {
     
     @Inject(method = "tick", at = @At("HEAD"))
     public void onTick(CallbackInfo ci){
-        PlayerEntity player = (PlayerEntity) (Object) this;
+        LivingEntity player = (LivingEntity) (Object) this;
         var level = getSwiftLevel(player);
         player.setStepHeight(level > 0 ? 1.25f : 0.6f);
 
@@ -60,7 +53,7 @@ public abstract class PlayerEntityMixin {
         }
     }
 
-    private int getSwiftLevel(PlayerEntity player) {
+    private int getSwiftLevel(LivingEntity player) {
         ItemStack stack = player.getEquippedStack(EquipmentSlot.FEET);
       return  EnchantmentHelper.getLevel(Swift.SWIFT_ENCHANTMENT, stack);
     }
